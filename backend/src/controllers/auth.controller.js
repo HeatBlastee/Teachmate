@@ -1,8 +1,8 @@
 import User from "../models/User.js";
-
+import jwt from "jsonwebtoken";
 export async function signup(req, res) {
   const { email, fullName, password } = req.body;
-
+  
   try {
     if (!email || !password || !fullName) {
       return res.status(400).json({ message: "All fields are required" });
@@ -39,7 +39,7 @@ export async function signup(req, res) {
       { userId: newUser._id },
       process.env.JWT_SECRET_KEY,
       {
-        expriesIn: "7d",
+        expiresIn:"7d"
       }
     );
 

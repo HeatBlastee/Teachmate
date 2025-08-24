@@ -14,13 +14,18 @@ const __dirname = path.resolve();
 app.use(
   cors({
     origin: "http://localhost:5173",
-    credentials: true, // allow frontend to send cookies
+    credentials: true, 
   })
 );
 
 
 app.use(express.json());
 app.use(cookieParser());
+app.use((req, res, next) => {
+  console.log("Incoming cookies:", req.cookies);
+  next();
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 
