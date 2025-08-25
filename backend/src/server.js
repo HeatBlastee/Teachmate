@@ -4,6 +4,7 @@ import authRoutes from "./routes/auth.route.js";
 import { connectDB } from "./lib/db.js";
 import userRoutes from "./routes/user.route.js";
 import cookieParser from "cookie-parser";
+import chatRoutes from "./routes/chat.route.js";
 import cors from "cors";
 import path from "path";
 dotenv.config();
@@ -26,10 +27,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/chat", chatRoutes);
 
-0
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
