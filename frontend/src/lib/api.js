@@ -65,3 +65,48 @@ export async function getStreamToken() {
   const response = await axiosInstance.get("/chat/token");
   return response.data;
 }
+
+export async function uploadAudio(audioBlob) {
+  const formData = new FormData();
+  formData.append("audio", audioBlob);
+
+  const response = await axiosInstance.post("/upload/audio", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return response.data;
+}
+
+// Vocabulary
+export const addWordToNotebook = async (data) => {
+    const response = await axiosInstance.post("/vocabulary", data);
+    return response.data;
+}
+
+export const getMyVocabulary = async () => {
+    const response = await axiosInstance.get("/vocabulary");
+    return response.data;
+}
+
+export const deleteVocabularyWord = async (id) => {
+    const response = await axiosInstance.delete(`/vocabulary/${id}`);
+    return response.data;
+}
+
+// AI
+export const sendAIMessage = async (prompt) => {
+    const response = await axiosInstance.post("/ai/chat", { prompt });
+    return response.data;
+}
+
+// Mentorship & Profile
+export const getMentors = async () => {
+    const response = await axiosInstance.get("/users/mentors");
+    return response.data;
+}
+
+export const updateProfile = async (data) => {
+    const response = await axiosInstance.put("/users/profile", data);
+    return response.data;
+}

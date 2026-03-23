@@ -43,8 +43,22 @@ const OnboardingPage = () => {
   };
 
   const handleRandomAvatar = () => {
-    const idx = Math.floor(Math.random() * 100) + 1; // 1-100 included
-    const randomAvatar = `https://avatar.iran.liara.run/public/${idx}.png`;
+    const names = [
+      "Felix",
+      "Aneka",
+      "Julian",
+      "Jack",
+      "Avery",
+      "Isaac",
+      "Nala",
+      "Luna",
+      "Leo",
+    ];
+
+    // Pick a random name from the array
+    const randomName = names[Math.floor(Math.random() * names.length)];
+
+    const randomAvatar = `https://api.dicebear.com/9.x/adventurer/svg?seed=${randomName}`;
 
     setFormState({ ...formState, profilePic: randomAvatar });
     toast.success("Random profile picture generated!");

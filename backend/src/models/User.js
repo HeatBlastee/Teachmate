@@ -46,6 +46,15 @@ const userSchema = new mongoose.Schema({
             ref: "User",
         },
     ],
+    role: {
+        type: String,
+        enum: ["student", "mentor"],
+        default: "student",
+    },
+    hourlyRate: {
+        type: Number,
+        default: 0,
+    },
 },
     { timestamps: true });
 

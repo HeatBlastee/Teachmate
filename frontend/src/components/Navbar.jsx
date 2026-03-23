@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
-import { BellIcon, LogOutIcon, ShipWheelIcon } from "lucide-react";
+import { BellIcon, LogOutIcon, ShipWheelIcon, BookOpen, Bot } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import useLogout from "../hooks/useLogout";
 
@@ -39,20 +39,35 @@ const Navbar = () => {
                 <BellIcon className="h-6 w-6 text-base-content opacity-70" />
               </button>
             </Link>
+            <Link to={"/vocabulary"}>
+              <button className="btn btn-ghost btn-circle" title="Vocabulary Notebook">
+                <BookOpen className="h-6 w-6 text-base-content opacity-70" />
+              </button>
+            </Link>
+            <Link to={"/ai-tutor"}>
+              <button className="btn btn-ghost btn-circle" title="AI Tutor">
+                <Bot className="h-6 w-6 text-primary animate-pulse" />
+              </button>
+            </Link>
           </div>
 
-          {/* TODO */}
+          <div className="hidden md:flex items-center gap-2 mr-4">
+               <Link to="/mentors" className="btn btn-ghost btn-sm">Find Mentors</Link>
+          </div>
+
           <ThemeSelector />
 
-          <div className="avatar">
-            <div className="w-9 rounded-full">
-              <img
-                src={authUser?.profilePic}
-                alt="User Avatar"
-                rel="noreferrer"
-              />
+          <Link to="/profile">
+            <div className="avatar cursor-pointer">
+                <div className="w-9 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <img
+                    src={authUser?.profilePic}
+                    alt="User Avatar"
+                    rel="noreferrer"
+                />
+                </div>
             </div>
-          </div>
+          </Link>
 
           {/* Logout button */}
           <button className="btn btn-ghost btn-circle" onClick={logoutMutation}>

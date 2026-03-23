@@ -8,6 +8,7 @@ const SignUpPage = () => {
     fullName: "",
     email: "",
     password: "",
+    role: "student",
   });
   const queryClient = useQueryClient();
   const {
@@ -93,7 +94,7 @@ const SignUpPage = () => {
                     />
                   </div>
                   {/* PASSWORD */}
-                  <div className="form-control w-full">
+                    <div className="form-control w-full">
                     <label className="label">
                       <span className="label-text">Password</span>
                     </label>
@@ -113,6 +114,35 @@ const SignUpPage = () => {
                     <p className="text-xs opacity-70 mt-1">
                       Password must be at least 6 characters long
                     </p>
+                  </div>
+
+                  {/* ROLE SELECTION */}
+                  <div className="form-control w-full">
+                    <label className="label">
+                      <span className="label-text">I want to join as a:</span>
+                    </label>
+                    <div className="flex gap-4">
+                      <label className="label cursor-pointer justify-start gap-2 border border-base-300 p-2 rounded-lg flex-1">
+                        <input
+                          type="radio"
+                          name="role"
+                          className="radio radio-primary"
+                          checked={signupData.role === "student"}
+                          onChange={() => setSignupData({ ...signupData, role: "student" })}
+                        />
+                        <span className="label-text font-medium">Student</span>
+                      </label>
+                      <label className="label cursor-pointer justify-start gap-2 border border-base-300 p-2 rounded-lg flex-1">
+                        <input
+                          type="radio"
+                          name="role"
+                          className="radio radio-secondary"
+                          checked={signupData.role === "mentor"}
+                          onChange={() => setSignupData({ ...signupData, role: "mentor" })}
+                        />
+                        <span className="label-text font-medium">Mentor</span>
+                      </label>
+                    </div>
                   </div>
 
                   <div className="form-control">

@@ -163,3 +163,32 @@ export async function getOutgoingFriendReqs(req, res) {
     res.status(500).json({ message: "Internal Server Error" });
   }
 }
+
+export async function updateProfile(req, res) {
+  try {
+    const userId = req.user.id;
+    const { bio, hourlyRate, nativeLanguage, learningLanguage, location } = req.body;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { bio, hourlyRate, nativeLanguage, learningLanguage, location },
+      { new: true }
+    );
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error("Error in updateProfile:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+export async function getMentors(req, res) {
+  try {
+    const mentors = await User.find({ role: "mentor", isOnboarded: true })
+        .select("-password");
+    res.status(200).json(mentors);
+  } catch (error) {
+    console.error("Error in getMentors:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}

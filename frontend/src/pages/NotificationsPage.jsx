@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Link } from "react-router";
 import { acceptFriendRequest, getFriendRequests } from "../lib/api";
 import {
   BellIcon,
@@ -130,13 +131,13 @@ const NotificationsPage = () => {
                               Recently
                             </p>
                           </div>
-                          <div className="badge badge-success">
-                            <MessageSquareIcon className="h-3 w-3 mr-1" />
-                            New Friend
                           </div>
+                           <Link to={`/chat/${notification.recipient._id}`} className="btn btn-sm btn-primary">
+                              <MessageSquareIcon className="h-4 w-4 mr-1" />
+                              Chat
+                           </Link>
                         </div>
                       </div>
-                    </div>
                   ))}
                 </div>
               </section>
